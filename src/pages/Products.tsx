@@ -19,7 +19,8 @@ export interface productInterface {
 export default function Products() {
     const baseUrl = 'https://dummyjson.com/products';
     const [products , setProducts]= useState<any[]>();
-    const [selectedCategories , setSelectedCategories]= useState<string[]>(['tops']);    
+    const [selectedCategories , setSelectedCategories]= useState<string[]>([]);    
+    const combinedCategories = selectedCategories.join(',');
 
     useEffect(() => {
       fetch(baseUrl).then((response) => {
@@ -46,9 +47,15 @@ export default function Products() {
                 <div className="flex justify-left flex-wrap gap-5 py-5">
                     {products && Array.isArray(products) ?(
                         <>
-                            {products.filter(product => selectedCategories.every(category => product.category.includes(category))).map((product:Array<String>) => (
-                             <Product item={product}/>
-                            ))} 
+                            { ( selectedCategories && selectedCategories.length >= 1 ) ? 
+                                products.filter(product => {return selectedCategories.some(category => product.category.includes(category))}).map((product:Array<String>,index:number) => (
+                                    <Product key={index} item={product}/>
+                                ))
+                                :
+                                products.map((product:Array<String>,index:number) => (
+                                    <Product key={index} item={product}/>
+                                ))
+                            } 
                         </>
                     ):(
                         <h1 className='text-slate-500 font-medium text-center'>Loading...</h1>

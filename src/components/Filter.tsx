@@ -2,22 +2,23 @@ import React, { useState , useEffect} from 'react';
 
 export default function Filter({selectedCategories,setSelectedCategories}:any) {
     
-//     const baseUrl = 'https://dummyjson.com/products/categories';
-//     const [categories , setCategories]= useState<any[]>();
-  
-//    useEffect(() => {
-//      fetch(baseUrl).then((response) => {
-//        if (!response.ok) {
-//            throw (response.status);
-//        }
-//        return response.json();
-//      }).then((responseData) => {
-//        setCategories(responseData.products);
-//      }).catch((error) => {
-//         console.log('error',error);
-//      });
-//    },[])
-//    console.log('categories', categories);
+    //     const baseUrl = 'https://dummyjson.com/products/categories';
+    //     const [categories , setCategories]= useState<any[]>();
+    //    useEffect(() => {
+    //      fetch(baseUrl).then((response) => {
+    //        if (!response.ok) {
+    //            throw (response.status);
+    //        }
+    //        return response.json();
+    //      }).then((responseData) => {
+    //        setCategories(responseData.products);
+    //      }).catch((error) => {
+    //         console.log('error',error);
+    //      });
+    //    },[])
+    //    console.log('categories', categories);
+
+    const [checked , setChecked]= useState();
 
     const categories = [
         "smartphones",
@@ -41,8 +42,6 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
         "motorcycle",
         "lighting"
     ]
-    const [checked , setChecked]= useState();
-
 
     const FilterButtons = () => {
         const button = categories.map((categorie, index) => (
@@ -53,6 +52,7 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
                         className='mr-2'
                         name="category"
                         value={categorie}
+                        checked={selectedCategories && Array.isArray(selectedCategories) && selectedCategories.includes(categorie)}
                         onChange={(e) => {
                             (
                                 selectedCategories && Array.isArray(selectedCategories) && selectedCategories.includes(categorie) ? 
@@ -60,7 +60,6 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
                                 :
                                     setSelectedCategories([...selectedCategories, categorie])
                             )
-                           
                         }}
                     />
                     {categorie}
