@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 
-export default function Filter() {
+export default function Filter({selectedCategories,setSelectedCategories}:any) {
+    
 //     const baseUrl = 'https://dummyjson.com/products/categories';
 //     const [categories , setCategories]= useState<any[]>();
   
@@ -40,19 +41,35 @@ export default function Filter() {
         "motorcycle",
         "lighting"
     ]
+    const [checked , setChecked]= useState();
+
+
     const FilterButtons = () => {
-        const button = categories.map((categorie, index)=>
+        const button = categories.map((categorie, index) => (
             <div key={index} className='px-2'>
                 <label className='uppercase'>
-                    <input type="checkbox" className='mr-2' value={categorie} onChange={()=>{
-                        console.log('value ne',  categorie)
-                    }}></input> 
+                    <input
+                        type="checkbox"
+                        className='mr-2'
+                        name="category"
+                        value={categorie}
+                        onChange={(e) => {
+                            (
+                                selectedCategories && Array.isArray(selectedCategories) && selectedCategories.includes(categorie) ? 
+                                    setSelectedCategories(selectedCategories.filter(selectedCategories => selectedCategories != categorie))
+                                :
+                                    setSelectedCategories([...selectedCategories, categorie])
+                            )
+                           
+                        }}
+                    />
                     {categorie}
                 </label>
             </div>
-        )
-        return <div>{button}</div>
-    }
+        ));
+    
+        return <div>{button}</div>;
+    };
       
     return (
         <div className="rounded-lg bg-white p-2 ">

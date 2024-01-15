@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { productInterface } from '../pages/Products'
 
 export default function Product(item:any) {
   return (
