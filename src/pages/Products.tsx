@@ -13,6 +13,13 @@ export interface productInterface {
     brand:string,
     category:string,
     thumbnail:string,
+    key: number, 
+    item: object,
+}
+
+interface IntrinsicElements {
+    key: number, 
+    item: object,
 }
 
 
@@ -48,14 +55,14 @@ export default function Products() {
                     {products && Array.isArray(products) ?(
                         <>
                             { ( selectedCategories && selectedCategories.length >= 1 ) ? 
-                                products.filter(product => {return selectedCategories.some(category => product.category.includes(category))}).map((product:Array<String>,index:number) => (
-                                    <Product key={index} item={product}/>
+                                products.filter(product => {return selectedCategories.some(category => product.category.includes(category))}).map((product:object,index:number) => (
+                                    <Product key={index} items={product}/>
                                 ))
                                 :
-                                products.map((product:Array<String>,index:number) => (
-                                    <Product key={index} item={product}/>
+                                products.map((product:object,index:number) => (
+                                    <Product key={index} items={product}/>
                                 ))
-                            } 
+                            }   
                         </>
                     ):(
                         <h1 className='text-slate-500 font-medium text-center'>Loading...</h1>

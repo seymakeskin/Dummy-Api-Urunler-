@@ -8,7 +8,7 @@ function App() {
  
 
   return (
-    <div className="App bg-slate-100 h-full">
+    <div className="App bg-slate-100 h-auto">
         <Header></Header>
         <Products></Products>
     </div>
