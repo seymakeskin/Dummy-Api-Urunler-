@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 
 export default function Product(items:any) {
-    console.log('items',items.items.rating)
+    // console.log('items',items.items.rating)
   return (
      <div className="w-[300px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <Link to={`/products/${items.items.id}`} >
