@@ -65,8 +65,7 @@ export default function Products() {
             console.log('Error:', error);
         }
     };
-
-
+    
     useEffect(() => {
         fetchProducts(selectedCategories);
     }, [selectedCategories]);
@@ -81,11 +80,7 @@ export default function Products() {
                 <div className="flex justify-left flex-wrap gap-5 py-5">
                     {products && Array.isArray(products) ?(
                         <>
-                            { ( selectedCategories && selectedCategories.length >= 1 ) ? 
-                                products.filter(product => {return selectedCategories.some(category => product.category.includes(category))}).map((product:object,index:number) => (
-                                    <Product key={index} items={product}/>
-                                ))
-                                :
+                            { 
                                 products.map((product:object,index:number) => (
                                     <Product key={index} items={product}/>
                                 ))
