@@ -73,21 +73,27 @@ export default function Products() {
         fetchProducts(selectedCategories);
     }, [selectedCategories]);
 
+    const handleSubmit = (event:React.FormEvent) => {
+        event.preventDefault();
+        const formData = {
+          minPrice: Number(minPrice),
+          maxPrice: Number(maxPrice),
+        };
+        
+        console.log('minPrice', minPrice)
+        console.log('minPrice',maxPrice)
+        // setMinPrice(formData.minPrice);
+        // setMaxPrice(formData.maxPrice);
+     };
+
   return (
     <>
         <div className="container mx-auto flex">
             <div className="w-2/12 mt-5 mr-5">
                 <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
-                <form onSubmit={(e:React.FormEvent)=>{
-                    e.preventDefault();
-                    console.log('submti', new FormData(e.target ) )
-                }}>
-                    <input type="text" placeholder='minimum'  value={minPrice} onChange={(e)=>{
-                        setMinPrice(Number(e.target.value));
-                    }} />
-                    <input type="text" placeholder='maximum'  value={maxPrice} onChange={(e)=>{
-                        setMaxPrice(Number(e.target.value));
-                    }} />
+                <form  onSubmit={handleSubmit}>
+                    <input type="text" placeholder='minimum'  value={minPrice}  />
+                    <input type="text" placeholder='maximum'  value={maxPrice} />
                     <button > Fiyata Göre Filtrele</button>
                 </form>
             </div>
