@@ -28,8 +28,10 @@ export default function Products() {
     const [products , setProducts]= useState<any[]>();
     const [selectedCategories , setSelectedCategories]= useState<string[]>([]);
 
-    const [minPrice , setMinPrice]= useState<number>();
-    const [maxPrice , setMaxPrice]= useState<number>();
+    const [minPrice , setMinPrice]= useState<number | string>();
+    const [maxPrice , setMaxPrice]= useState<number | string>();
+
+    const [submitForm , setSubmitForm]= useState<boolean>();
 
     const fetchProducts = async (categories: string[]) => {
         console.log('cate', categories);
@@ -79,11 +81,9 @@ export default function Products() {
           minPrice: Number(minPrice),
           maxPrice: Number(maxPrice),
         };
-        
-        console.log('minPrice', minPrice)
-        console.log('minPrice',maxPrice)
-        // setMinPrice(formData.minPrice);
-        // setMaxPrice(formData.maxPrice);
+        setMinPrice(formData.minPrice);
+        setMaxPrice(formData.maxPrice);
+        setSubmitForm(true);
      };
 
   return (
@@ -92,8 +92,14 @@ export default function Products() {
             <div className="w-2/12 mt-5 mr-5">
                 <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
                 <form  onSubmit={handleSubmit}>
-                    <input type="text" placeholder='minimum'  value={minPrice}  />
-                    <input type="text" placeholder='maximum'  value={maxPrice} />
+                    <input type="text" placeholder='minimum'  value={minPrice}  onChange={(e)=> {
+                        setMinPrice(e.target.value);
+                        setSubmitForm(false);
+                    }} />
+                    <input type="text" placeholder='maximum'  value={maxPrice}  onChange={(e)=> {
+                        setMaxPrice(e.target.value);
+                        setSubmitForm(false);
+                    }}/>
                     <button > Fiyata Göre Filtrele</button>
                 </form>
             </div>
@@ -102,7 +108,7 @@ export default function Products() {
                     {products && Array.isArray(products) ?(
                         <>
                             { 
-                                products.filter( product => (minPrice !== undefined) ? product.price >= minPrice : true).filter( product => (maxPrice !== undefined)? product.price <= maxPrice : true ).map((product:object,index:number) => (
+                                products.filter( product => (minPrice !== undefined && submitForm === true ) ? product.price >= minPrice : true).filter( product => (maxPrice !== undefined && submitForm === true )? product.price <= maxPrice : true ).map((product:object,index:number) => (
                                     <Product key={index} items={product}/>
                                 ))
                             }   
