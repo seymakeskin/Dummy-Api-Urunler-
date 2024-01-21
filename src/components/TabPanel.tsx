@@ -52,7 +52,7 @@ export default function BasicTabs() {
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
+      {/* <CustomTabPanel value={value} index={0}>
         Item One
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
@@ -60,7 +60,7 @@ export default function BasicTabs() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         Item Three
-      </CustomTabPanel>
+      </CustomTabPanel> */}
     </Box>
   );
 }
