@@ -14,15 +14,7 @@ export interface ProductInterface {
     category:string,
     thumbnail:string,
     images?: any,
-
 }
-
-interface IntrinsicElements {
-    key: number,
-    item: object,
-}
-
-
 export default function Products() {
     const baseUrl = 'https://dummyjson.com/products';
     const [products , setProducts]= useState<ProductInterface[]>([]);
@@ -91,22 +83,27 @@ export default function Products() {
     <>
         <div className="container mx-auto flex">
             <div className="w-2/12 mt-5 mr-5">
-                <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
-                <form  onSubmit={handleSubmit}>
-                    <input type="text" placeholder='minimum'  value={minPrice}  onChange={(e)=> {
-                        setMinPrice( Number(e.target.value) );
-                        setSubmitForm(false);
-                    }} />
-                    <input type="text" placeholder='maximum'  value={maxPrice}  onChange={(e)=> {
-                        setMaxPrice( Number(e.target.value));
-                        setSubmitForm(false);
-                    }}/>
-                    <button > Fiyata Göre Filtrele</button>
-                </form>
+                <div className="rounded-lg bg-white p-2 ">
+                    <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
+                    <form  onSubmit={handleSubmit}  >
+                        <div className="flex gap-10">
+                            <input type="text"  className="flex-1" placeholder='minimum'  value={minPrice}  onChange={(e)=> {
+                                setMinPrice( Number(e.target.value) );
+                                setSubmitForm(false);
+                            }} />
+                            <input type="text"  className="flex-1" placeholder='maximum'  value={maxPrice}  onChange={(e)=> {
+                                setMaxPrice( Number(e.target.value));
+                                setSubmitForm(false);
+                            }}/>
+                        </div>
+                        
+                        <button > Fiyata Göre Filtrele</button>
+                    </form>
+                </div>
             </div>
             <div className="w-full md:w-10/12" >
-                <div >
-                    <select onChange={(e)=> {
+                <div>
+                    <select  aria-label="label for the select"  onChange={(e)=> {
                                  setSortProduct(e.target.value);
                              }}
                             className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">

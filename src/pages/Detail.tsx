@@ -22,6 +22,7 @@ export default function Detail() {
          console.log('error',error);
       });
     },[slug])
+    
     return (
         (data ? (
             <div className="container mx-auto" >
