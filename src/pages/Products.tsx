@@ -77,7 +77,7 @@ export default function Products() {
         setMinPrice(formData.minPrice);
         setMaxPrice(formData.maxPrice);
         setSubmitForm(true);
-     };
+    };
 
   return (
     <>
@@ -86,7 +86,7 @@ export default function Products() {
                 <div className="rounded-lg bg-white p-2 ">
                     <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
                     <form  onSubmit={handleSubmit}  >
-                        <div className="flex gap-10">
+                        <div>
                             <input type="text"  className="flex-1" placeholder='minimum'  value={minPrice}  onChange={(e)=> {
                                 setMinPrice( Number(e.target.value) );
                                 setSubmitForm(false);

@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -32,19 +33,15 @@ export default function Header() {
           <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
             <span className="absolute -inset-1.5"></span>
             <span className="sr-only">View notifications</span>
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-            </svg>
+            <img width="20" height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA7UlEQVR4nO2UOwrCQBBAhYApBC9go14gpb2HELyDehVR7+SnMliLlVgFRWKhWDwZHMFG3cgkEcmDgSWZzWN2JlsqFfwigA8MgDlw0pB1X96lJa0BIa9ZSk4alYZvpM9yu8q5H68rPUvxIoF4ZimOE4hjS3Ei8qr4+Bc97uc11b7+o5+QnLKZ+OnmWmZ6cz2QauQopY86cBJTfWZbaUGmAB7QBoI3OYHmeBbCOjAEIp3cMzAGWkBFQ9YT4KI5ke6pfyOsquDK98jekXzLVdoENtixBhou4hX2hC7iXQrirYu4CxwMpXug49Tngr/iBs9IHX8MJ9DWAAAAAElFTkSuQmCC"/>
           </button>
-  
           <div className="relative ml-3">
-            <div>
+            <Link to={`/login`} >
               <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span className="absolute -inset-1.5"></span>
                 <span className="sr-only">Open user menu</span>
               </button>
-            </div>
-          
+            </Link>
           </div>
         </div>
       </div>
