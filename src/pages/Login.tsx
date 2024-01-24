@@ -3,43 +3,48 @@ import React,{ useState , useEffect,} from 'react'
 export default function Login() {
     const [mail , setMail]= useState<string>();
     const [password , setPassword]= useState<string>();
-    const storedIsLogedIn = localStorage.getItem('isLogedIn') === 'true';
+    const [storedIsLogedIn , setStoredIsLogedIn]= useState<boolean>(false);
 
-
-    const [isLogedIn,setIsLogedIn] = useState<boolean>(storedIsLogedIn || false);
+    const [isLogedIn,setIsLogedIn] = useState<boolean>(false);
 
     const submitEvent = (e:React.FormEvent) => {
         e.preventDefault();
         if (mail !== "" && password !== "") {
             setIsLogedIn(true);
-
-            let Data = {
-                Email: mail,
-                Password: password,
-                isLogedIn:isLogedIn,
-            };
-            console.log('data,islogin?',isLogedIn);
-            console.log('data',Data);
-            localStorage.setItem("userInfo", JSON.stringify(Data));
-           
-          
         }else{
             alert("Lütfen bilgileri eksiksiz giriniz!");
         }
     };
 
-    console.log('localstroga',localStorage.getItem('isLogedIn'));
+    useEffect(() => {
+        if (isLogedIn) {
+            let Data = {
+                Email: mail,
+                Password: password,
+                isLogedIn: isLogedIn,
+            };
+            localStorage.setItem("userInfo", JSON.stringify(Data));
+            console.log('')
+        }
+    }, [isLogedIn, mail, password]);
 
+    useEffect(() => {
+        const logedInUser = localStorage.getItem('userInfo');
+        if (logedInUser) {
+            const parsedData = JSON.parse(logedInUser);
+            setStoredIsLogedIn(parsedData.isLogedIn)
+        }
+    }, []);
 
-    const handleLogout = () => {
-        setIsLogedIn(false);
-    };
+    // const handleLogout = () => {
+    //     setIsLogedIn(false);
+    // };
 
   return (
     <>
-        {isLogedIn ? (
+        {storedIsLogedIn ? (
             <div>
-                Deneme
+                Giriş yapıldı.
             </div>
         ) : (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
