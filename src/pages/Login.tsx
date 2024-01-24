@@ -34,7 +34,7 @@ export default function Login() {
         const logedInUser = localStorage.getItem('userInfo');
         if (logedInUser) {
             const parsedData = JSON.parse(logedInUser);
-            setStoredIsLogedIn(parsedData.isLogedIn)
+            setIsLogedIn(parsedData.isLogedIn)
         }
     }, [isLogedIn]);
 
