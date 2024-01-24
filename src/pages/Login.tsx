@@ -3,8 +3,6 @@ import React,{ useState , useEffect,} from 'react'
 export default function Login() {
     const [mail , setMail]= useState<string>();
     const [password , setPassword]= useState<string>();
-    const [storedIsLogedIn , setStoredIsLogedIn]= useState<boolean>(false);
-
     const [isLogedIn,setIsLogedIn] = useState<boolean>(false);
 
     const submitEvent = (e:React.FormEvent) => {
@@ -24,9 +22,13 @@ export default function Login() {
                 isLogedIn: isLogedIn,
             };
             localStorage.setItem("userInfo", JSON.stringify(Data));
-            console.log('')
         }
     }, [isLogedIn, mail, password]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('userInfo');
+        setIsLogedIn(false);
+    };
 
     useEffect(() => {
         const logedInUser = localStorage.getItem('userInfo');
@@ -34,17 +36,16 @@ export default function Login() {
             const parsedData = JSON.parse(logedInUser);
             setStoredIsLogedIn(parsedData.isLogedIn)
         }
-    }, []);
+    }, [isLogedIn]);
 
-    // const handleLogout = () => {
-    //     setIsLogedIn(false);
-    // };
+  
 
   return (
     <>
-        {storedIsLogedIn ? (
-            <div>
-                Giriş yapıldı.
+        {isLogedIn ? (
+            <div className="container mx-auto mt-8">
+                <h1 className="text-2xl font-bold text-gray-700 px-6 md:px-0">Hesabım</h1>
+                <button onClick={handleLogout} className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Çıkış Yap</button>
             </div>
         ) : (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
