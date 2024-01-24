@@ -96,7 +96,6 @@ export default function Products() {
                                 setSubmitForm(false);
                             }}/>
                         </div>
-                        
                         <button > Fiyata Göre Filtrele</button>
                     </form>
                 </div>
