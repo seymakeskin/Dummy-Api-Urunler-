@@ -6,6 +6,8 @@ import {ProductInterface } from './Products';
 export default function Detail() {
     const { slug } = useParams();
     const baseUrl = `https://dummyjson.com/products/${slug}`;
+    const addCartUrl= 'https://6585857f022766bcb8c8cfb7.mockapi.io/cart';
+
     const [data , setData]= useState<ProductInterface>();
     const [images , setImages]= useState<any>([]);
 
@@ -22,6 +24,15 @@ export default function Detail() {
          console.log('error',error);
       });
     },[slug])
+
+    function handleClick() {
+        var data:any ={id:data.id,price:data.price,quantity:1,thumbnail:data.thumbnail,title:data.title,total:data.price} 
+        fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {  
+          method: 'POST', 
+          mode: 'cors', 
+          body: JSON.stringify(data) 
+        })
+    }
     
     return (
         (data ? (
@@ -50,11 +61,10 @@ export default function Detail() {
                             </section>
                             <section aria-labelledby="options-heading" className="mt-10">
                                 <form>
-                                    <button type="submit" className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+                                    <button type="submit" className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={handleClick}>Add to bag</button>
                                 </form>
                             </section>
-                        </div>
-                    </div>
+                        </div>                   </div>
                 </div>
             </div>
         ) : <h1>Loading..</h1>)

@@ -19,9 +19,10 @@ export interface Cart {
 
 
 export default function Cart() {
-    const [data , setData]= useState<Cart>();
+    const [data , setData]= useState<any>();
 
-    const baseUrl = "https://dummyjson.com/carts/1";
+    const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
+    // mock apide sepete ekleme fonksiyonu yapabilmek için proje oluşturdum. 
 
     useEffect(() => {
         fetch(baseUrl).then((response) => {
@@ -43,7 +44,7 @@ export default function Cart() {
         <div className="flex items-start justify-between">
             <h2 className="text-lg font-medium text-gray-900 py-4" >Shopping cart</h2>
         </div>   
-        { data ? (
+        { data  && data.length ? (
             <div className=" inset-0">
                 <div className=" inset-0 ">
                     <div className="pointer-events-none inset-y-0 right-0 flex max-w-full">
@@ -54,7 +55,7 @@ export default function Cart() {
                             <div className="flow-root">
                                 <ul role="list" className="-my-6 divide-y divide-gray-200">
                                     {
-                                         data.products.map((product:ProductInterface,index:number) => (
+                                         data.map((product:ProductInterface,index:number) => (
                                             <>
                                                 <li className="flex py-6">
                                                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -102,7 +103,7 @@ export default function Cart() {
                 </div>
             </div>
         ) : <>
-            <h1>Loading...</h1>
+            <h1> Sepetinizde Ürün Yok ! </h1>
         
         </> }
       
