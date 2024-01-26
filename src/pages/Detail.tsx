@@ -19,19 +19,35 @@ export default function Detail() {
         return response.json();
       }).then((responseData) => {
           setData(responseData);
+          console.log('res',responseData);
           setImages(responseData.images || []);
       }).catch((error) => {
          console.log('error',error);
       });
     },[slug])
 
-    function handleClick() {
-        var data:any ={id:data.id,price:data.price,quantity:1,thumbnail:data.thumbnail,title:data.title,total:data.price} 
-        fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {  
-          method: 'POST', 
-          mode: 'cors', 
-          body: JSON.stringify(data) 
-        })
+    function handleClick(e:React.FormEvent,d:object) {
+        var d = {
+            id: data.id,
+            price: data.price,
+            quantity:1,
+            thumbnail: data.thumbnail,
+            title: data.title,
+        };
+        fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(d)
+        }).then((response) => {
+            if (!response.ok) {
+                throw (response.status);
+            }
+            return response.json();
+        }).then((da) => {
+          console.log('da',da)
+        }).catch((error) => {
+            alert(error);
+        });
     }
     
     return (
@@ -56,15 +72,24 @@ export default function Detail() {
                             <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{data.title}</h2>
                             <section aria-labelledby="information-heading" className="mt-2">
                                 <h3 id="information-heading">{data.description}</h3>
-                                <p className="text-2xl text-gray-900">{data.price}</p>
+                                <p className="text-2xl text-gray-900">${data.price}</p>
                                 <Rating rating={data.rating}></Rating>
                             </section>
                             <section aria-labelledby="options-heading" className="mt-10">
                                 <form>
-                                    <button type="submit" className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={handleClick}>Add to bag</button>
+                                <button
+                                    type="submit"
+                                    className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleClick(e);
+                                    }}  
+                                    > Add to bag
+                                    </button>
                                 </form>
                             </section>
-                        </div>                   </div>
+                        </div>                  
+                    </div>
                 </div>
             </div>
         ) : <h1>Loading..</h1>)
