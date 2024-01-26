@@ -10,6 +10,8 @@ export interface ProductInterface {
     discountPercentage:number,
     rating:number,
     stock:number,
+    total?:number,
+    quantity?:number,
     brand:string,
     category:string,
     thumbnail:string,
