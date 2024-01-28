@@ -4,6 +4,7 @@ import Filter from '../components/Filter';
 
 export interface ProductInterface {
     id: number,
+    productId?:number,
     title: string,
     description: string,
     price: number,
@@ -130,7 +131,6 @@ export default function Products() {
                                         }
                                     })
                                     .map((product, index:number) => {
-                                        // console.log('product',product)
                                         return ( <Product key={index} product={product}/>)
                                     })
                             }

@@ -20,7 +20,6 @@ export interface Cart {
 
 export default function Cart() {
     const [data , setData]= useState<any>();
-
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
     // mock apide sepete ekleme fonksiyonu yapabilmek için proje oluşturdum. 
 
@@ -36,8 +35,16 @@ export default function Cart() {
         }).catch((error) => {
            console.log('error',error);
         });
-        
     },[])
+
+    function removeItem(e:React.FormEvent ,removeId:number){
+        fetch(`${baseUrl}/${removeId}`, {
+            method: 'DELETE',
+        })
+        .then(res => res.text())
+        .then(res => console.log(res))
+    }
+
    
   return (
     <div className="container mx-auto">
@@ -67,14 +74,17 @@ export default function Cart() {
                                                             <h3>
                                                                 <a href="#">{product.title}</a>
                                                             </h3>
-                                                            <p className="ml-4">${product.total}</p>
+                                                            <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
                                                             </div>
                                                             <p className="mt-1 text-sm text-gray-500">Adet Fiyatı :  ${product.price} </p>
                                                         </div>
                                                         <div className="flex flex-1 items-end justify-between text-sm">
-                                                            <p className="text-gray-500">Adet : {product.quantity}</p>
+                                                            <p className="text-gray-500"> Adet : {product.quantity}</p>
                                                             <div className="flex">
-                                                                <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                                                                <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500"  onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    removeItem(e, product.id);
+                                                                }}  >Remove</button>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -26,30 +26,52 @@ export default function Detail() {
       });
     },[slug])
 
-    function handleClick(e:React.FormEvent,d:object) {
-        var d = {
-            id: data.id,
-            price: data.price,
-            quantity:1,
-            thumbnail: data.thumbnail,
-            title: data.title,
-        };
-        fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(d)
-        }).then((response) => {
+  function handleClick(e: React.FormEvent, d: any) {
+        // d:object yazınca hata ? 
+        
+    fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart')
+        .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Failed to fetch cart. Status: ${response.status}`);
+        }
+        return response.json();
+        })
+        .then((cartItems) => {
+            const existingItem = cartItems.find((item: any) => item.productId === d.productId);
+            console.log('existingItem',existingItem)
+            if (existingItem) {
+                const updatedItem = {
+                    ...existingItem,
+                    quantity: existingItem.quantity + 1,
+                };
+
+                return fetch(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart/${existingItem.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(updatedItem),
+                });
+            } else {
+                return fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(d),
+                });
+            }
+        })
+        .then((response) => {
             if (!response.ok) {
-                throw (response.status);
+                throw new Error(`Failed to update cart. Status: ${response.status}`);
             }
             return response.json();
-        }).then((da) => {
-          console.log('da',da)
-        }).catch((error) => {
-            alert(error);
+        })
+        .then((da) => {
+            console.log('da', da);
+        })
+        .catch((error) => {
+            alert(error.message);
         });
     }
-    
+
     return (
         (data ? (
             <div className="container mx-auto" >
@@ -81,8 +103,17 @@ export default function Detail() {
                                     type="submit"
                                     className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                     onClick={(e) => {
+                                        console.log(data.id,'ddata.id')
                                         e.preventDefault();
-                                        handleClick(e);
+                                        var d = {
+                                            productId: data.id,
+                                            price: data.price,
+                                            quantity: 1,
+                                            thumbnail: data.thumbnail,
+                                            title: data.title,
+                                            total: data.price,
+                                        }; 
+                                        handleClick(e, d);
                                     }}  
                                     > Add to bag
                                     </button>
