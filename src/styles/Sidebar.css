@@ -1,0 +1,8 @@
+#side-over .opacity, #side-over .side-cart{
+    transition: 0.3s ease;
+    transform: translateX(100%);
+    display:none;
+}
+#side-over.show .opacity, #side-over .side-cart{
+    transform: translateX(0);
+}

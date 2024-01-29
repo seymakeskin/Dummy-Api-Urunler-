@@ -20,6 +20,7 @@ export interface Cart {
 
 export default function Cart() {
     const [data , setData]= useState<any>();
+    // const [total, setTotal] = useState:Array<String>([]);
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
     // mock apide sepete ekleme fonksiyonu yapabilmek için proje oluşturdum. 
 
@@ -59,48 +60,47 @@ export default function Cart() {
                         <div className="flex h-full flex-col md:flex-row gap-20 pb-10">
                         <div className="flex-1">
                             <div className="mt-8">
-                            <div className="flow-root">
-                                <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                    {
-                                         data.map((product:ProductInterface,index:number) => (
-                                            <>
-                                                <li className="flex py-6">
-                                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
-                                                    </div>
-                                                    <div className="ml-4 flex flex-1 flex-col">
-                                                        <div>
-                                                            <div className="flex justify-between text-base font-medium text-gray-900">
-                                                            <h3>
-                                                                <a href="#">{product.title}</a>
-                                                            </h3>
-                                                            <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
-                                                            </div>
-                                                            <p className="mt-1 text-sm text-gray-500">Adet Fiyatı :  ${product.price} </p>
+                                <div className="flow-root">
+                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                        {
+                                            data.map((product:ProductInterface,index:number) => (
+                                                <>
+                                                    <li className="flex py-6">
+                                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                            <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
                                                         </div>
-                                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                                            <p className="text-gray-500"> Adet : {product.quantity}</p>
-                                                            <div className="flex">
-                                                                <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500"  onClick={(e) => {
-                                                                    e.preventDefault();
-                                                                    removeItem(e, product.id);
-                                                                }}  >Remove</button>
+                                                        <div className="ml-4 flex flex-1 flex-col">
+                                                            <div>
+                                                                <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                <h3>
+                                                                    <a href="#">{product.title}</a>
+                                                                </h3>
+                                                                <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
+                                                                </div>
+                                                                <p className="mt-1 text-sm text-gray-500">Adet Fiyatı :  ${product.price} </p>
+                                                            </div>
+                                                            <div className="flex flex-1 items-end justify-between text-sm">
+                                                                <p className="text-gray-500"> Adet : {product.quantity}</p>
+                                                                <div className="flex">
+                                                                    <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500"  onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        removeItem(e, product.id);
+                                                                    }}  >Remove</button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </>
-                                         ))
-                                    }
-                                </ul>
+                                                    </li>
+                                                </>
+                                            ))
+                                        }
+                                    </ul>
+                                </div>
                             </div>
-                            </div>
-                            
                         </div>
                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                             <div className="flex justify-between text-base font-medium text-gray-900">
-                            <p>Subtotal</p>
-                            <p>${data.total}</p>
+                                <p>Subtotal</p>
+                                 {/* ${total} */}
                             </div>
                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                             <div className="mt-6">
