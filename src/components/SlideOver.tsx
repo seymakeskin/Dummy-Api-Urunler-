@@ -1,14 +1,10 @@
 import React, { useState , useEffect} from 'react';
 import '../styles/Sidebar.css';
 import { ProductInterface } from '../pages/Products';
+import { Link } from 'react-router-dom';
+import { SlideOverProps } from '../App';
 
-// state'i tüm sayfalarda kontrol edilebilir yapmam gerekiyor.
 
-interface SlideOverProps {
-    open: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-  
 const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
     const [data , setData]= useState<any>();
     // const [total, setTotal] = useState:Array<String>([]);
@@ -27,7 +23,7 @@ const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
         }).catch((error) => {
            console.log('error',error);
         });
-    },[])
+    },[open])
 
     function removeItem(e:React.FormEvent ,removeId:number){
         fetch(`${baseUrl}/${removeId}`, {
@@ -40,8 +36,6 @@ const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
            console.log('error',error);
         });
     }
-
-
 
   return (
     <>
@@ -57,9 +51,8 @@ const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
                                 <h2 className="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
                                 <div className="ml-3 flex h-7 items-center">
                                 <button onClick={()=> {
-                                console.log('open', open);
-                                    setOpen(false) 
-                                }} type="button" className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"  >
+                                        setOpen(false) 
+                                    }} type="button" className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"  >
                                     <span className="absolute -inset-0.5"></span>
                                     <span className="sr-only" >Close panel</span>
                                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -118,14 +111,17 @@ const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
                             </div>
                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                             <div className="mt-6">
-                                <a href="#" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
+                                <Link to={`/cart`}  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"> Sepete Git</Link>
                             </div>
                             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>
-                                or
-                                <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                or <br />
+                                <button  onClick={()=> {
+                                            setOpen(false) 
+                                        }}  
+                                type="button"  className="font-medium text-indigo-600 hover:text-indigo-500">
                                     Continue Shopping
-                                    <span aria-hidden="true"> &rarr;</span>
+                                   
                                 </button>
                                 </p>
                             </div>

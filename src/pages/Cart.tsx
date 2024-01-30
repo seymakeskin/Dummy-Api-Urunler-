@@ -20,7 +20,7 @@ export interface Cart {
 
 export default function Cart() {
     const [data , setData]= useState<any>();
-    // const [total, setTotal] = useState:Array<String>([]);
+    const [total, setTotal] = useState<number>(0);
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
     // mock apide sepete ekleme fonksiyonu yapabilmek için proje oluşturdum. 
 
@@ -36,7 +36,19 @@ export default function Cart() {
         }).catch((error) => {
            console.log('error',error);
         });
+        
     },[])
+    useEffect(() => {
+        if (data && data.length) {
+            const totalPrice = data.reduce((cur:number, item: ProductInterface) => {
+              const quantity = item.quantity !== undefined ? item.quantity : 1;
+              return cur + item.price * quantity;
+            }, 0);
+            setTotal(totalPrice)
+        }
+    },[data])
+
+   
 
 
     function removeItem(e:React.FormEvent ,removeId:number){
@@ -50,6 +62,8 @@ export default function Cart() {
            console.log('error',error);
         });
     }
+
+ 
 
   return (
     <div className="container mx-auto">
@@ -104,7 +118,7 @@ export default function Cart() {
                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                             <div className="flex justify-between text-base font-medium text-gray-900">
                                 <p>Subtotal</p>
-                                 {/* ${total} */}
+                                $ {total}
                             </div>
                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                             <div className="mt-6">

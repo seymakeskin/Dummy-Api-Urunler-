@@ -85,7 +85,7 @@ export default function Products() {
   return (
     <>
         <div className="container mx-auto flex">
-            <div className="w-2/12 mt-5 mr-5">
+            <div className="w-2/12 mt-[70px] mr-5">
                 <div className="rounded-lg bg-white p-2 ">
                     <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
                     <form  onSubmit={handleSubmit}  >
@@ -103,18 +103,17 @@ export default function Products() {
                     </form>
                 </div>
             </div>
-            <div className="w-full md:w-10/12" >
-                <div>
-                    <select  aria-label="label for the select"  onChange={(e)=> {
+            <div className="w-full md:w-10/12 " >
+                <div className="mt-5 mb-3 flex justify-end">
+                    <select className="w-[200px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"  aria-label="label for the select"  onChange={(e)=> {
                                  setSortProduct(e.target.value);
-                             }}
-                            className="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
+                             }}>
                         <option value={undefined} disabled={true} selected={true}>Fiyata göre sırala</option>
                         <option value={'up'} >Düşük fiyata Göre</option>
                         <option value ={'down'}>Yüksek fiyata göre</option>
                     </select>
                 </div>
-                <div className="flex justify-left flex-wrap gap-5 py-5">
+                <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4">
                     {products.length ?(
                         <>
                             {

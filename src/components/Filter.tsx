@@ -4,8 +4,6 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
     
     const baseUrl = 'https://dummyjson.com/products/categories';
     const [categories , setCategories]= useState<any>();
-    const [checked , setChecked]= useState();
-
     useEffect(() => {
        fetch(baseUrl).then((response) => {
          if (!response.ok) {

@@ -6,7 +6,7 @@ import { ProductInterface } from '../pages/Products'
 export default function Product({product}:{product:ProductInterface}) {
 
   return (
-     <div className="w-[300px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+     <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <Link to={`/products/${product.id}`} >
                 <div  className="flex justify-center">
                     <img className="p-8 rounded-t-lg h-[200px] " src={product.thumbnail} alt={product.brand}/>

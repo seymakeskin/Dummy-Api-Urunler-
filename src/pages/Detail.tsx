@@ -2,15 +2,14 @@ import React, { useState , useEffect,} from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
 import {ProductInterface } from './Products';
-import SlideOver from '../components/SlideOver';
+import { SlideOverProps } from '../App';
 
-export default function Detail() {
+const Detail: React.FC<SlideOverProps> = ({ setOpen }) => {
     const { slug } = useParams();
     const baseUrl = `https://dummyjson.com/products/${slug}`;
     const addCartUrl= 'https://6585857f022766bcb8c8cfb7.mockapi.io/cart';
     const [data , setData]= useState<ProductInterface>();
     const [images , setImages]= useState<any>([]);
-    const [open, setOpen] = useState(false);
 
     useEffect(() => {
       fetch(baseUrl).then((response) => {
@@ -82,7 +81,7 @@ export default function Detail() {
     return (
         (data ? (
             <>
-                <SlideOver open={open} setOpen={setOpen}   />
+              
                 <div className="container mx-auto" >
                     
                     <div className="relative flex w-full items-center overflow-hidden bg-white my-5 px-4 pb-8 pt-14  sm:px-6 sm:pt-8 md:p-6 lg:p-8">
@@ -138,3 +137,4 @@ export default function Detail() {
         ) : <h1>Loading..</h1>)
     )
 }
+export default Detail;
