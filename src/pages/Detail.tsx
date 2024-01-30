@@ -82,7 +82,7 @@ export default function Detail() {
     return (
         (data ? (
             <>
-                <SlideOver open={true}  />
+                <SlideOver open={open} setOpen={setOpen}   />
                 <div className="container mx-auto" >
                     
                     <div className="relative flex w-full items-center overflow-hidden bg-white my-5 px-4 pb-8 pt-14  sm:px-6 sm:pt-8 md:p-6 lg:p-8">

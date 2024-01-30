@@ -38,15 +38,19 @@ export default function Cart() {
         });
     },[])
 
+
     function removeItem(e:React.FormEvent ,removeId:number){
         fetch(`${baseUrl}/${removeId}`, {
             method: 'DELETE',
         })
-        .then(res => res.text())
-        .then(res => console.log(res))
+        .then((responseData) => { 
+            setData(responseData);
+            console.log('data',responseData)
+        }).catch((error) => {
+           console.log('error',error);
+        });
     }
 
-   
   return (
     <div className="container mx-auto">
         <div className="flex items-start justify-between">
