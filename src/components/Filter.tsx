@@ -19,7 +19,7 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
       
     return (
         <>
-         {categories ?(
+         {categories &&(
                  <>
                      {
                          categories.map((categorie:string, index:number) => (
@@ -46,8 +46,6 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
                          ))
                      }
                  </>
-         ):(
-                 <h1 className='text-slate-500 font-medium text-center'>Loading...</h1>
          )}
         </>
     )

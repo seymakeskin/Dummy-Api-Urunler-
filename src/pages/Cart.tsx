@@ -48,9 +48,6 @@ export default function Cart() {
         }
     },[data])
 
-   
-
-
     function removeItem(e:React.FormEvent ,removeId:number){
         fetch(`${baseUrl}/${removeId}`, {
             method: 'DELETE',
@@ -62,8 +59,6 @@ export default function Cart() {
            console.log('error',error);
         });
     }
-
- 
 
   return (
     <div className="container mx-auto">

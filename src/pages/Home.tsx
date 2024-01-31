@@ -40,8 +40,7 @@ export default function Home() {
          )}
 
         </div>
-        <TabPanel></TabPanel>
-
+        {/* <TabPanel></TabPanel> */}
     </div>
   )
 }

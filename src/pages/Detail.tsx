@@ -9,7 +9,6 @@ export default function Detail() {
 
     const { slug } = useParams();
     const baseUrl = `https://dummyjson.com/products/${slug}`;
-    const addCartUrl= 'https://6585857f022766bcb8c8cfb7.mockapi.io/cart';
     const [data , setData]= useState<ProductInterface>();
     const [images , setImages]= useState<any>([]);
 
@@ -29,53 +28,52 @@ export default function Detail() {
     },[slug])
 
     
-
-  function handleClick(e: React.FormEvent, d: any) {
+    function handleClick(e: React.FormEvent, d: any) {
         // d:object yazınca hata ? 
         
-    fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart')
-        .then((response) => {
-        if (!response.ok) {
-            throw new Error(`Failed to fetch cart. Status: ${response.status}`);
-        }
-        return response.json();
-        })
-        .then((cartItems) => {
-            const existingItem = cartItems.find((item: any) => item.productId === d.productId);
-            console.log('existingItem',existingItem)
-            if (existingItem) {
-                const updatedItem = {
-                    ...existingItem,
-                    quantity: existingItem.quantity + 1,
-                };
+        fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch cart. Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((cartItems) => {
+                const existingItem = cartItems.find((item: any) => item.productId === d.productId);
+                console.log('existingItem',existingItem)
+                if (existingItem) {
+                    const updatedItem = {
+                        ...existingItem,
+                        quantity: existingItem.quantity + 1,
+                    };
 
-                return fetch(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart/${existingItem.id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(updatedItem),
-                });
-                
-            } else {
-                return fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(d),
-                });
-            }
-        })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Failed to update cart. Status: ${response.status}`);
-            }
-         
-            return response.json();
-        })
-        .then((da) => {
-            console.log('da', da);
-             setOpen(true);
-        })
-        .catch((error) => {
-            alert(error.message);
+                    return fetch(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart/${existingItem.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedItem),
+                    });
+                    
+                } else {
+                    return fetch('https://6585857f022766bcb8c8cfb7.mockapi.io/cart', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(d),
+                    });
+                }
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Failed to update cart. Status: ${response.status}`);
+                }
+            
+                return response.json();
+            })
+            .then((da) => {
+                console.log('da', da);
+                setOpen(true);
+            })
+            .catch((error) => {
+                alert(error.message);
         });
     }
     
@@ -83,9 +81,7 @@ export default function Detail() {
     return (
         (data ? (
             <>
-              
                 <div className="container mx-auto" >
-                    
                     <div className="relative flex w-full items-center overflow-hidden bg-white my-5 px-4 pb-8 pt-14  sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                             <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg  sm:col-span-4 lg:col-span-5">

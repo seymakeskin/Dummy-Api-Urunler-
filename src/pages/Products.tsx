@@ -88,30 +88,38 @@ export default function Products() {
             <div className="w-2/12 mt-[70px] mr-5">
                 <div className="rounded-lg bg-white p-2 ">
                     <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
-                    <form  onSubmit={handleSubmit}  >
-                        <div>
-                            <input type="text"  className="flex-1" placeholder='minimum'  value={minPrice}  onChange={(e)=> {
-                                setMinPrice( Number(e.target.value) );
-                                setSubmitForm(false);
-                            }} />
-                            <input type="text"  className="flex-1" placeholder='maximum'  value={maxPrice}  onChange={(e)=> {
-                                setMaxPrice( Number(e.target.value));
-                                setSubmitForm(false);
-                            }}/>
-                        </div>
-                        <button > Fiyata Göre Filtrele</button>
-                    </form>
+                   
                 </div>
             </div>
             <div className="w-full md:w-10/12 " >
-                <div className="mt-5 mb-3 flex justify-end">
-                    <select className="w-[200px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"  aria-label="label for the select"  onChange={(e)=> {
+                <div className="mt-5 mb-3 flex justify-between gap-5 items-baseline">
+                    <select className="w-[200px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"  aria-label="label for the select"  onChange={(e)=> {
                                  setSortProduct(e.target.value);
                              }}>
                         <option value={undefined} disabled={true} selected={true}>Fiyata göre sırala</option>
                         <option value={'up'} >Düşük fiyata Göre</option>
                         <option value ={'down'}>Yüksek fiyata göre</option>
                     </select>
+
+                    <form  onSubmit={handleSubmit}  >
+                        <div className='grid  grid-cols-1 gap-x-2 sm:grid-cols-6 w-[315px]'>
+                            <div className="sm:col-span-2">
+                                <input type="text"  className="inline bg-white-100 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" placeholder='minimum'  value={minPrice}  onChange={(e)=> {
+                                    setMinPrice( Number(e.target.value) );
+                                    setSubmitForm(false);
+                                }} />
+                            </div>
+                            <div className="sm:col-span-2">
+                                <input type="text"  className="inline  bg-white-100 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" placeholder='maximum'  value={maxPrice}  onChange={(e)=> {
+                                    setMaxPrice( Number(e.target.value));
+                                    setSubmitForm(false);
+                                }}/>
+                            </div>
+                            <div  className="sm:col-span-2">
+                             <button className='w-full text-white bg-slate-400 hover:bg-slate-500  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>Filtrele</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4">
                     {products.length ?(

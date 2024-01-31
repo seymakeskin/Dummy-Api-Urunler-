@@ -8,7 +8,7 @@ import { CartContext } from '../contexts/CartContext';
 export default function SlideOver() {
 
     const { open, setOpen } = useContext(CartContext);
-    
+    const [total, setTotal] = useState<number>(0);
     const [data , setData]= useState<any>();
     // const [total, setTotal] = useState:Array<String>([]);
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
@@ -28,15 +28,39 @@ export default function SlideOver() {
         });
     },[open])
 
+    useEffect(() => {
+        if (data && data.length) {
+            const totalPrice = data.reduce((cur:number, item: ProductInterface) => {
+              const quantity = item.quantity !== undefined ? item.quantity : 1;
+              return cur + item.price * quantity;
+            }, 0);
+            setTotal(totalPrice)
+        }
+    },[data])
+    useEffect(() => {
+        if (data && data.length) {
+            const totalPrice = data.reduce((cur:number, item: ProductInterface) => {
+              const quantity = item.quantity !== undefined ? item.quantity : 1;
+              return cur + item.price * quantity;
+            }, 0);
+            setTotal(totalPrice)
+        }
+    },[data])
+
+
     function removeItem(e:React.FormEvent ,removeId:number){
         fetch(`${baseUrl}/${removeId}`, {
             method: 'DELETE',
-        })
-        .then((responseData) => { 
-            setData(responseData);
-            console.log('data',responseData)
+        }).then(() => {
+            const updatedData = data.filter((item: ProductInterface) => item.id !== removeId);
+            setData(updatedData);
+            const totalPrice = updatedData.reduce((cur: number, item: ProductInterface) => {
+            const quantity = item.quantity !== undefined ? item.quantity : 1;
+            return cur + item.price * quantity;
+            }, 0);
+              setTotal(totalPrice);
         }).catch((error) => {
-           console.log('error',error);
+            alert(error);
         });
     }
 
@@ -110,7 +134,7 @@ export default function SlideOver() {
                             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                             <div className="flex justify-between text-base font-medium text-gray-900">
                                 <p>Subtotal</p>
-                                <p>$262.00</p>
+                                <p>${total}</p>
                             </div>
                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                             <div className="mt-6">

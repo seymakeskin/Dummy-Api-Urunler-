@@ -13,11 +13,6 @@ import SlideOver from './components/SlideOver';
 
 import { CartContext } from './contexts/CartContext';
 
-export interface  SlideOverProps {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 function App() {
   const [open, setOpen] = useState(false);
 
