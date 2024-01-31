@@ -1,4 +1,4 @@
-import React, {useState, useEffect, FormEventHandler, ChangeEvent} from 'react';
+import React, {useState, useEffect} from 'react';
 import Product from '../components/Product';
 import Filter from '../components/Filter';
 

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import { useState , useEffect} from 'react';
 
 export default function Filter({selectedCategories,setSelectedCategories}:any) {
     
@@ -34,7 +34,7 @@ export default function Filter({selectedCategories,setSelectedCategories}:any) {
                                          onChange={(e) => {
                                              (
                                                  selectedCategories && Array.isArray(selectedCategories) && selectedCategories.includes(categorie) ? 
-                                                     setSelectedCategories(selectedCategories.filter(selectedCategories => selectedCategories != categorie))
+                                                     setSelectedCategories(selectedCategories.filter(selectedCategories => selectedCategories !== categorie))
                                                  :
                                                      setSelectedCategories([...selectedCategories, categorie])
                                              )

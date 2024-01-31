@@ -91,12 +91,12 @@ export default function SlideOver() {
                             <div className="mt-8">
                                 <div className="flow-root">
                                 { data  && data.length ? (
-                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                    <ul className="-my-6 divide-y divide-gray-200">
                                             {
 
                                                 data.map((product:ProductInterface,index:number) => (
                                                     <>
-                                                        <li className="flex py-6">
+                                                        <li  className="flex py-6">
                                                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                                 <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
                                                             </div>
@@ -104,7 +104,7 @@ export default function SlideOver() {
                                                                 <div>
                                                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                                                     <h3>
-                                                                        <a href="#">{product.title}</a>
+                                                                        <Link to={`product/${product.id}`}></Link>
                                                                     </h3>
                                                                     <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
                                                                     </div>

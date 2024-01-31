@@ -25,7 +25,7 @@ export default function Detail() {
       }).catch((error) => {
          console.log('error',error);
       });
-    },[slug])
+    },[baseUrl])
 
     
     function handleClick(e: React.FormEvent, d: any) {
@@ -89,7 +89,7 @@ export default function Detail() {
                                     {images.length > 0 ? (
                                         images.map((image:string, i:number) => (
                                             <div className="travelcompany-input" key={i}>
-                                                <img src={image} alt={`Product Image ${i + 1}`} className="rounded-lg" />
+                                                <img src={image} alt="Product" className="rounded-lg" />
                                             </div>
                                         ))
                                     ) : (

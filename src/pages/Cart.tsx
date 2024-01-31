@@ -1,5 +1,6 @@
 import React, { useState , useEffect,} from 'react';
 import { ProductInterface } from './Products';
+import { Link } from 'react-router-dom';
 
 export interface Root {
     carts: Cart[]
@@ -18,7 +19,7 @@ export interface Cart {
 }
 
 
-export default function Cart() {
+export default function CartPage() {
     const [data , setData]= useState<any>();
     const [total, setTotal] = useState<number>(0);
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
@@ -74,7 +75,7 @@ export default function Cart() {
                         <div className="flex-1">
                             <div className="mt-8">
                                 <div className="flow-root">
-                                    <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                    <ul className="-my-6 divide-y divide-gray-200">
                                         {
                                             data.map((product:ProductInterface,index:number) => (
                                                 <>
@@ -86,7 +87,7 @@ export default function Cart() {
                                                             <div>
                                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                                 <h3>
-                                                                    <a href="#">{product.title}</a>
+                                                                    <Link to={`product/${product.id}`}></Link>
                                                                 </h3>
                                                                 <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
                                                                 </div>
@@ -116,9 +117,6 @@ export default function Cart() {
                                 $ {total}
                             </div>
                             <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                            <div className="mt-6">
-                            <a href="#" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Checkout</a>
-                            </div>
                         </div>
                         </div>
                     </div>
@@ -127,9 +125,7 @@ export default function Cart() {
             </div>
         ) : <>
             <h1> Sepetinizde Ürün Yok ! </h1>
-        
         </> }
-      
   </div>
   )
 }

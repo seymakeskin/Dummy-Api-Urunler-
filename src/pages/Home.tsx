@@ -1,7 +1,7 @@
-import React, { useState , useEffect} from 'react';
+import { useState , useEffect} from 'react';
 import Slide from "../components/Slide";
 import { Link } from 'react-router-dom';
-import TabPanel from '../components/TabPanel';
+// import TabPanel from '../components/TabPanel';
 
 export default function Home() {
   const baseUrl = 'https://dummyjson.com/products/categories';

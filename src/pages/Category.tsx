@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import  {useState, useEffect} from 'react';
 import Product from '../components/Product';
 import { useParams } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ export default function Category() {
         }).catch((error) => {
            console.log('error',error);
         });
-    },[slug])
+    },[baseUrl])
 
     console.log(products);
      return (
