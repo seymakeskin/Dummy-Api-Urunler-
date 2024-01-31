@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import Slide from "../components/Slide";
 import { Link } from 'react-router-dom';
+import TabPanel from '../components/TabPanel';
 
 export default function Home() {
   const baseUrl = 'https://dummyjson.com/products/categories';
@@ -24,7 +25,7 @@ export default function Home() {
         <Slide></Slide>
         <h3 className='text-4xl font-bold dark:text-white text-center mt-10 mb-10 text-slate-500'>Tüm Kategoriler</h3>
         <div className="flex gap-1 flex-wrap justify-center">
-         {categories ?(
+         {categories &&(
                  <>
                      {
                          categories.map((categorie:string, index:number) => (
@@ -36,11 +37,11 @@ export default function Home() {
                          ))
                      }
                  </>
-         ):(
-          <></>
          )}
 
         </div>
+        <TabPanel></TabPanel>
+
     </div>
   )
 }

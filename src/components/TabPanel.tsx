@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
-import CustomTabPanel from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -11,7 +10,7 @@ interface TabPanelProps {
   value: number;
 }
 
-function  TabPanel(props: TabPanelProps) {
+function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -30,12 +29,14 @@ function  TabPanel(props: TabPanelProps) {
     </div>
   );
 }
+
 function a11yProps(index: number) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
+
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
@@ -52,7 +53,7 @@ export default function BasicTabs() {
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      {/* <CustomTabPanel value={value} index={0}>
+      <CustomTabPanel value={value} index={0}>
         Item One
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
@@ -60,7 +61,7 @@ export default function BasicTabs() {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         Item Three
-      </CustomTabPanel> */}
+      </CustomTabPanel>
     </Box>
   );
 }

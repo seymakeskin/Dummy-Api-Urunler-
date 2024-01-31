@@ -11,6 +11,8 @@ import Login from './pages/Login';
 import Cart from './pages/Cart';
 import SlideOver from './components/SlideOver';
 
+import { CartContext } from './contexts/CartContext';
+
 export interface  SlideOverProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,19 +20,25 @@ export interface  SlideOverProps {
 
 function App() {
   const [open, setOpen] = useState(false);
-  
+
+  const data = {
+    open,
+    setOpen
+  }
   return (
     <div className="App bg-slate-100 h-full min-h-screen">
-        <Header  open={open} setOpen={setOpen} ></Header>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:slug" element={<Detail/>}  setOpen={setOpen} />
-            <Route path="/category/:slug" element={<Category/>} />
-            <Route path="/login" element={<Login/>} />
-            <Route path="/cart" element={<Cart/>} />
-        </Routes>
-        <SlideOver open={open} setOpen={setOpen}   />
+      <CartContext.Provider value={data}>
+          <Header></Header>
+          <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:slug" element={<Detail/>}/>
+              <Route path="/category/:slug" element={<Category/>} />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/cart" element={<Cart/>} />
+          </Routes>
+          <SlideOver />
+      </CartContext.Provider>
     </div>
   );
 }

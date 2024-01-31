@@ -1,10 +1,12 @@
-import React, { useState , useEffect,} from 'react';
+import React, { useState , useEffect, useContext,} from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
 import {ProductInterface } from './Products';
-import { SlideOverProps } from '../App';
+import { CartContext } from '../contexts/CartContext';
 
-const Detail: React.FC<SlideOverProps> = ({ setOpen }) => {
+export default function Detail() {
+    const { setOpen } = useContext(CartContext);
+
     const { slug } = useParams();
     const baseUrl = `https://dummyjson.com/products/${slug}`;
     const addCartUrl= 'https://6585857f022766bcb8c8cfb7.mockapi.io/cart';
@@ -14,7 +16,7 @@ const Detail: React.FC<SlideOverProps> = ({ setOpen }) => {
     useEffect(() => {
       fetch(baseUrl).then((response) => {
         if (!response.ok) {
-            throw (response.status);
+            throw (response.status); 
         }
         return response.json();
       }).then((responseData) => {
@@ -70,7 +72,7 @@ const Detail: React.FC<SlideOverProps> = ({ setOpen }) => {
         })
         .then((da) => {
             console.log('da', da);
-            setOpen(true);
+             setOpen(true);
         })
         .catch((error) => {
             alert(error.message);
@@ -137,4 +139,3 @@ const Detail: React.FC<SlideOverProps> = ({ setOpen }) => {
         ) : <h1>Loading..</h1>)
     )
 }
-export default Detail;

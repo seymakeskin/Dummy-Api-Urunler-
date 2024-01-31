@@ -1,11 +1,14 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState , useEffect, useContext} from 'react';
 import '../styles/Sidebar.css';
 import { ProductInterface } from '../pages/Products';
 import { Link } from 'react-router-dom';
-import { SlideOverProps } from '../App';
+import { CartContext } from '../contexts/CartContext';
 
 
-const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
+export default function SlideOver() {
+
+    const { open, setOpen } = useContext(CartContext);
+    
     const [data , setData]= useState<any>();
     // const [total, setTotal] = useState:Array<String>([]);
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
@@ -39,7 +42,7 @@ const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
 
   return (
     <>
-        <div className={`${open ? 'show relative z-10' : 'relative z-10'}`}  id="side-over" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div className={`${open ? 'show' : undefined} relative z-10` }  id="side-over" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
             <div className="opacity fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div className="side-cart fixed inset-0 overflow-hidden">
                 <div className="absolute inset-0 overflow-hidden">
@@ -135,4 +138,4 @@ const SlideOver: React.FC<SlideOverProps> = ({ open, setOpen }) => {
     </>
   )
 }
-export default SlideOver;
+
