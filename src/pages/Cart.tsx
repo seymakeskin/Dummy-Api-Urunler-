@@ -61,6 +61,16 @@ export default function CartPage() {
         });
     }
 
+    useEffect(() => {
+        if (data && data.length) {
+            const totalPrice = data.reduce((cur:number, item: ProductInterface) => {
+              const quantity = item.quantity !== undefined ? item.quantity : 1;
+              return cur + item.price * quantity;
+            }, 0);
+            setTotal(totalPrice)
+        }
+    },[data])
+
   return (
     <div className="container mx-auto">
         <div className="flex items-start justify-between">
