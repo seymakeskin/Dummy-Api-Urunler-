@@ -1,6 +1,6 @@
 import React, { useState , useEffect,} from 'react';
-import { ProductInterface } from './Products';
 import { Link } from 'react-router-dom';
+import { ProductInterface } from '../types';
 
 export interface Root {
     carts: Cart[]

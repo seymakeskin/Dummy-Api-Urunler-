@@ -1,23 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import Product from '../components/Product';
 import Filter from '../components/Filter';
+import { ProductInterface } from '../types';
+import Product from '../components/Product';
 
-export interface ProductInterface {
-    id: number,
-    productId?:number,
-    title: string,
-    description: string,
-    price: number,
-    discountPercentage:number,
-    rating:number,
-    stock:number,
-    total?:number,
-    quantity?:number,
-    brand:string,
-    category:string,
-    thumbnail:string,
-    images?: any,
-}
+
 export default function Products() {
     const baseUrl = 'https://dummyjson.com/products';
     const [products , setProducts]= useState<ProductInterface[]>([]);

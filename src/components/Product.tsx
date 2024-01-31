@@ -1,7 +1,8 @@
 import React from 'react'
 import Rating from './Rating'
 import { Link } from 'react-router-dom';
-import { ProductInterface } from '../pages/Products'
+import { ProductInterface } from '../types';
+
 
 export default function Product({product}:{product:ProductInterface}) {
 

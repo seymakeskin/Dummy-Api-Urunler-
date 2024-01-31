@@ -1,8 +1,8 @@
 import React, { useState , useEffect, useContext} from 'react';
 import '../styles/Sidebar.css';
-import { ProductInterface } from '../pages/Products';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
+import { ProductInterface } from '../types';
 
 
 export default function SlideOver() {
@@ -82,8 +82,8 @@ export default function SlideOver() {
                                     }} type="button" className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"  >
                                     <span className="absolute -inset-0.5"></span>
                                     <span className="sr-only" >Close panel</span>
-                                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
                                 </div>
@@ -91,12 +91,11 @@ export default function SlideOver() {
                             <div className="mt-8">
                                 <div className="flow-root">
                                 { data  && data.length ? (
-                                    <ul className="-my-6 divide-y divide-gray-200">
+                                    <ul   className="-my-6 divide-y divide-gray-200">
                                             {
-
                                                 data.map((product:ProductInterface,index:number) => (
                                                     <>
-                                                        <li  className="flex py-6">
+                                                        <li key={index} className="flex py-6">
                                                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                                 <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
                                                             </div>

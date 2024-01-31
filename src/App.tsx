@@ -12,6 +12,7 @@ import Cart from './pages/Cart';
 import SlideOver from './components/SlideOver';
 
 import { CartContext } from './contexts/CartContext';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -31,6 +32,7 @@ function App() {
               <Route path="/category/:slug" element={<Category/>} />
               <Route path="/login" element={<Login/>} />
               <Route path="/cart" element={<Cart/>} />
+              <Route path="/search/:slug" element={<SearchPage/>} />
           </Routes>
           <SlideOver />
       </CartContext.Provider>

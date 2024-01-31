@@ -1,8 +1,8 @@
 import React, { useState , useEffect, useContext,} from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
-import {ProductInterface } from './Products';
 import { CartContext } from '../contexts/CartContext';
+import { ProductInterface } from '../types';
 
 export default function Detail() {
     const { setOpen } = useContext(CartContext);

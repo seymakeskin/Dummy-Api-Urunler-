@@ -1,21 +1,8 @@
 import  {useState, useEffect} from 'react';
 import Product from '../components/Product';
 import { useParams } from 'react-router-dom';
+import { ProductInterface } from '../types';
 
-export interface ProductInterface {
-    id: number,
-    title: string,
-    description: string,
-    price: number,
-    discountPercentage:number,
-    rating:number,
-    stock:number,
-    brand:string,
-    category:string,
-    thumbnail:string,
-    images?: any,
-
-}
 
 export default function Category() {
     const { slug } = useParams();
@@ -36,7 +23,6 @@ export default function Category() {
         });
     },[baseUrl])
 
-    console.log(products);
      return (
          <div className="container mx-auto">
                  <div className="mt-5 mb-3 flex justify-end">
