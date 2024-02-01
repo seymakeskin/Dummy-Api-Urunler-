@@ -24,7 +24,7 @@ export default function Category() {
     },[baseUrl])
 
      return (
-         <div className="container mx-auto">
+         <div className="container mx-auto p-2">
                  <div className="mt-5 mb-3 flex justify-end">
                      <select aria-label="label for the select"
                             onChange={(e)=> { setSortProduct(e.target.value); }}

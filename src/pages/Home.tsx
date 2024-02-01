@@ -21,7 +21,7 @@ export default function Home() {
   },[])
    
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-2">
         <Slide></Slide>
         <h3 className='text-4xl font-bold dark:text-white text-center mt-10 mb-10 text-slate-500'>Tüm Kategoriler</h3>
         <div className="flex gap-1 flex-wrap justify-center">

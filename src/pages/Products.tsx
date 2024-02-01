@@ -70,9 +70,9 @@ export default function Products() {
 
   return (
     <>
-        <div className="container mx-auto flex">
-            <div className="w-2/12 mt-[70px] mr-5">
-                <div className="rounded-lg bg-white p-2 ">
+        <div className="container mx-auto p-2 flex">
+            <div className="w-2/12 mt-[70px] mr-5 hidden md:flex">
+                <div className="rounded-lg bg-white p-2  ">
                     <Filter selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></Filter>
                    
                 </div>
@@ -87,7 +87,7 @@ export default function Products() {
                         <option value ={'down'}>Yüksek fiyata göre</option>
                     </select>
 
-                    <form  onSubmit={handleSubmit}  >
+                    <form  onSubmit={handleSubmit}  className="hidden md:flex" >
                         <div className='grid  grid-cols-1 gap-x-2 sm:grid-cols-6 w-[315px]'>
                             <div className="sm:col-span-2">
                                 <input type="text"  className="inline bg-white-100 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" placeholder='minimum'  value={minPrice}  onChange={(e)=> {

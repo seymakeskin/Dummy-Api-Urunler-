@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <>
         {isLogedIn ? (
-            <div className="container mx-auto mt-8">
+            <div className="container mx-auto p-2 mt-8">
                 <h1>Giriş Başarılı!</h1>
                 <h1 className="text-2xl font-bold text-gray-700 px-6 md:px-0">Hesabım</h1>
                 <button onClick={handleLogout} className="flex  justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Çıkış Yap</button>

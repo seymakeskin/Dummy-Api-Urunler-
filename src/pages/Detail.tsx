@@ -81,7 +81,7 @@ export default function Detail() {
     return (
         (data ? (
             <>
-                <div className="container mx-auto" >
+                <div className="container mx-auto p-2" >
                     <div className="relative flex w-full items-center overflow-hidden bg-white my-5 px-4 pb-8 pt-14  sm:px-6 sm:pt-8 md:p-6 lg:p-8">
                         <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                             <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg  sm:col-span-4 lg:col-span-5">
