@@ -26,7 +26,7 @@ export default function SearchPage() {
 
     return (
         <>
-            {products ? (
+            {products && (
                 <div className="container mx-auto">
                             <div className="mt-5 mb-3 flex justify-end ">
                                 <select  aria-label="label for the select"
@@ -54,12 +54,10 @@ export default function SearchPage() {
                                         }
                                     </>
                                 ):(
-                                    <h1 className='text-slate-500 font-medium text-center'>Loading...</h1>
+                                    <h1 className='text-slate-500 font-medium text-center'>Aradığınız ürün bulunamadı!</h1>
                                 )}
                             </div>
                 </div>
-            ) : (
-                <h1> Aradığınız ürün bulunamadı! </h1>
             )}
         </>
    )
