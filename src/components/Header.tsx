@@ -21,13 +21,29 @@ export default function Header() {
               <a className="text-3xl font-bold font-heading" href="/">
                 MARKET
               </a>
-              <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+              <ul className="hidden md:flex px-4 mx-auto font-semibold items-center font-heading space-x-12">
                 <Link to={'/'}>
                     Home
                 </Link>
                 <Link to={'/products'}>
                     Products
                 </Link>
+                <form onSubmit={handleSubmit} className="flex items-center">
+                    <input
+                      type="text"
+                      className="inline bg-white appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-transparent"
+                      placeholder="Ürün Ara"
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
+                    />
+                    <button
+                      type="submit"
+                      className="ml-2 px-4 py-2 text-white bg-slate-400 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Ara
+                    </button>
+              </form>
               </ul>
               <div className="hidden xl:flex items-center space-x-5 items-center">
                 <button className="flex items-center hover:text-gray-200"  onClick={()=>{
@@ -73,22 +89,7 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </a> */}
-            {/* <form onSubmit={handleSubmit} className="flex items-center">
-                  <input
-                    type="text"
-                    className="inline bg-white appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-transparent"
-                    placeholder="Ürün Ara"
-                    onChange={(e) => {
-                      setSearchTerm(e.target.value);
-                    }}
-                  />
-                  <button
-                    type="submit"
-                    className="ml-2 px-4 py-2 text-white bg-slate-400 hover:bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >
-                    Ara
-                  </button>
-          </form> */}
+            
       </nav>
 
     </>
