@@ -13,6 +13,7 @@ import SlideOver from './components/SlideOver';
 
 import { CartContext } from './contexts/CartContext';
 import SearchPage from './pages/SearchPage';
+import SignIn from './pages/SignIn';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -31,6 +32,7 @@ function App() {
               <Route path="/product/:slug" element={<Detail/>}/>
               <Route path="/category/:slug" element={<Category/>} />
               <Route path="/login" element={<Login/>} />
+              <Route path="/signin" element={<SignIn/>} />
               <Route path="/cart" element={<Cart/>} />
               <Route path="/search/:slug" element={<SearchPage/>} />
           </Routes>

@@ -1,4 +1,6 @@
 import React,{ useState , useEffect,} from 'react'
+import { Link } from 'react-router-dom';
+import { handleInputChange } from '../components/utils/formUtils';
 
 export default function Login() {
     // const [mail , setMail]= useState<string>();
@@ -68,10 +70,7 @@ export default function Login() {
                      <div>
                          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
                          <div className="mt-2">
-                             <input id="email" name="email"
-                                onChange={(e:any)=>{
-                                    setUsername( e.target.value)    
-                                }} 
+                             <input id="email" name="email" onChange={(e) => handleInputChange(e, setUsername)}
                              type="text" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                          </div> 
                      </div>
@@ -80,16 +79,19 @@ export default function Login() {
                             <label  htmlFor="password"  className="block text-sm font-medium leading-6 text-gray-900">Password</label>
                          </div>
                          <div className="mt-2">
-                             <input id="password" name="password" 
-                                onChange={(e:any)=>{
-                                    setPassword( e.target.value)    
-                                }} 
+                             <input id="password" name="password"  onChange={(e) => handleInputChange(e, setPassword)}
                                type="password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                          </div>
                      </div>
                      <div>
                          <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
                      </div>
+                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                        <p>
+                            or <br/>
+                            <Link to={'/signin'} type="button" className="font-medium text-indigo-600 hover:text-indigo-500"> Continue Shopping</Link>
+                        </p>
+                    </div>
                  </form>
              </div>
          </div>
