@@ -63,10 +63,6 @@ export default function Login() {
              </div>
              <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                  <form className="space-y-6" action="#" method="POST"  onSubmit={submitEvent}>
-                    <p>Giriş yapmak için ;<br/>
-                        username: 'kminchelle',
-                        password: '0lelplR',
-                    </p>
                      <div>
                          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Username</label>
                          <div className="mt-2">
@@ -84,12 +80,12 @@ export default function Login() {
                          </div>
                      </div>
                      <div>
-                         <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                         <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> Log in</button>
                      </div>
                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
                             or <br/>
-                            <Link to={'/signin'} type="button" className="font-medium text-indigo-600 hover:text-indigo-500"> Continue Shopping</Link>
+                            <Link to={'/signin'} type="button" className="font-medium text-indigo-600 hover:text-indigo-500"> Sign In </Link>
                         </p>
                     </div>
                  </form>
