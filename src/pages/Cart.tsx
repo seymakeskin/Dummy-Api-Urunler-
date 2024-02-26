@@ -54,8 +54,13 @@ export default function CartPage() {
             method: 'DELETE',
         })
         .then((responseData) => { 
-            setData(responseData);
-            console.log('data',responseData)
+            const updatedData = data.filter((item: ProductInterface) => item.id !== removeId);
+            setData(updatedData);
+            const totalPrice = updatedData.reduce((cur: number, item: ProductInterface) => {
+            const quantity = item.quantity !== undefined ? item.quantity : 1;
+            return cur + item.price * quantity;
+            }, 0);
+            setTotal(totalPrice);
         }).catch((error) => {
            console.log('error',error);
         });
@@ -89,31 +94,34 @@ export default function CartPage() {
                                         {
                                             data.map((product:ProductInterface,index:number) => (
                                                 <>
-                                                    <li className="flex py-6">
-                                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                            <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
-                                                        </div>
-                                                        <div className="ml-4 flex flex-1 flex-col">
-                                                            <div>
-                                                                <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                <h3>
-                                                                    <Link to={`product/${product.id}`}></Link>
-                                                                </h3>
-                                                                <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
+                                                    <Link to={`/product/${product.id}`}>
+                                                        <li className="flex py-6">
+                                                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                                    <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
                                                                 </div>
-                                                                <p className="mt-1 text-sm text-gray-500">Adet Fiyatı :  ${product.price} </p>
-                                                            </div>
-                                                            <div className="flex flex-1 items-end justify-between text-sm">
-                                                                <p className="text-gray-500"> Adet : {product.quantity}</p>
-                                                                <div className="flex">
-                                                                    <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500"  onClick={(e) => {
-                                                                        e.preventDefault();
-                                                                        removeItem(e, product.id);
-                                                                    }}  >Remove</button>
+
+                                                                <div className="ml-4 flex flex-1 flex-col">
+                                                                    <div>
+                                                                        <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                        <h3>
+                                                                            {product.title}
+                                                                        </h3>
+                                                                        <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
+                                                                        </div>
+                                                                        <p className="mt-1 text-sm text-gray-500">Adet Fiyatı :  ${product.price} </p>
+                                                                    </div>
+                                                                    <div className="flex flex-1 items-end justify-between text-sm">
+                                                                        <p className="text-gray-500"> Adet : {product.quantity}</p>
+                                                                        <div className="flex">
+                                                                            <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500"  onClick={(e) => {
+                                                                                e.preventDefault();
+                                                                                removeItem(e, product.id);
+                                                                            }}  >Remove</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                                        </li>
+                                                    </Link>
                                                 </>
                                             ))
                                         }

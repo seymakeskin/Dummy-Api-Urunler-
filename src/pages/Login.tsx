@@ -1,6 +1,6 @@
 import React,{ useState , useEffect,} from 'react'
 import { Link } from 'react-router-dom';
-import { handleInputChange } from '../components/utils/formUtils';
+import { handleInputChange } from '../utils/formUtils';
 
 export default function Login() {
     // const [mail , setMail]= useState<string>();

@@ -56,7 +56,7 @@ export default function Product({product}:{product:ProductInterface}) {
                 alert(error.message);
         });
     }
-
+    console.log(product, 'product');
   return (
      <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <Link to={`/product/${product.id}`} >
@@ -64,7 +64,7 @@ export default function Product({product}:{product:ProductInterface}) {
                     <img className="p-8 rounded-t-lg h-[200px] " src={product.thumbnail} alt={product.brand}/>
                 </div>
                 <div className="px-5 pb-5">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"> {product.brand}</h5>
+                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"> {product.title}</h5>
                     <Rating rating={product.rating}></Rating>
                     <div className="flex items-center justify-between">
                         <span className="text-3xl font-bold text-gray-900 dark:text-white">${product.price}</span>

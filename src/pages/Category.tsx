@@ -2,26 +2,29 @@ import  {useState, useEffect} from 'react';
 import Product from '../components/Product';
 import { useParams } from 'react-router-dom';
 import { ProductInterface } from '../types';
+import useFetch from '../hooks/useFetch'; 
 
 
 export default function Category() {
     const { slug } = useParams();
     const baseUrl = `https://dummyjson.com/products/category/${slug}`;
-    const [products , setProducts]= useState<ProductInterface[]>([]);
+    // const [products , setProducts]= useState<ProductInterface[]>([]);
     const [sortProduct , setSortProduct]= useState<string>('');
 
-    useEffect(() => {
-        fetch(baseUrl).then((response) => {
-          if (!response.ok) {
-              throw (response.status);
-          }
-          return response.json();
-        }).then((responseData) => {
-            setProducts(responseData.products);
-        }).catch((error) => {
-           console.log('error',error);
-        });
-    },[baseUrl])
+    const { data, loading, error } = useFetch<ProductInterface[]>(`https://dummyjson.com/products/category/${slug}`);
+
+    // useEffect(() => {
+    //     fetch(baseUrl).then((response) => {
+    //       if (!response.ok) {
+    //           throw (response.status);
+    //       }
+    //       return response.json();
+    //     }).then((responseData) => {
+    //         setProducts(responseData.products);
+    //     }).catch((error) => {
+    //        console.log('error',error);
+    //     });
+    // },[baseUrl])
 
      return (
          <div className="container mx-auto p-2">
@@ -36,10 +39,10 @@ export default function Category() {
                      </select>
                  </div>
                  <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-4">
-                     {products.length ?(
+                     {data?(
                          <>
                              {
-                                 products.sort((a, b) => {
+                                 data.sort((a, b) => {
                                          if (sortProduct === 'up') {
                                              return a.price - b.price;
                                          } else if (sortProduct === 'down'){
@@ -47,7 +50,7 @@ export default function Category() {
                                          }else{
                                              return 0;
                                          }
-                                 }).map((product, index:number) => {  return ( <Product key={index} product={product}/>) })
+                                 }).map((data, index:number) => {  return ( <Product key={index} product={data}/>) })
                              }
                          </>
                      ):(

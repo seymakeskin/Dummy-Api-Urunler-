@@ -1,5 +1,5 @@
 import React,{ useState,ChangeEvent,} from 'react'
-import { handleInputChange } from '../components/utils/formUtils';
+import { handleInputChange } from '../utils/formUtils';
 // import { Moment } from 'moment'; 
 
 export default function SignIn() {

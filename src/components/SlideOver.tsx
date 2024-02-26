@@ -103,7 +103,7 @@ export default function SlideOver() {
                                                                 <div>
                                                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                                                     <h3>
-                                                                        <Link to={`product/${product.id}`}></Link>
+                                                                        <Link to={`product/${product.id}`}> {product.title} </Link>
                                                                     </h3>
                                                                     <p className="ml-4"> ${( product.total !== undefined ?  product.total : 0) * (product.quantity !== undefined ? product.quantity : 0) }</p>
                                                                     </div>
