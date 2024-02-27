@@ -20,25 +20,31 @@ export interface Cart {
 
 
 export default function CartPage() {
-    const [data , setData]= useState<any>();
+    // const [data , setData]= useState<any>();
     const [total, setTotal] = useState<number>(0);
     const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
+    
+    const { data} = useFetch<any>(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart`);
+
+
     // mock apide sepete ekleme fonksiyonu yapabilmek için proje oluşturdum. 
 
-    useEffect(() => {
-        fetch(baseUrl).then((response) => {
-          if (!response.ok) {
-              throw (response.status);
-          }
-          return response.json();
-        }).then((responseData) => { 
-            setData(responseData);
-            console.log('data',responseData)
-        }).catch((error) => {
-           console.log('error',error);
-        });
+    // useEffect(() => {
+    //     fetch(baseUrl).then((response) => {
+    //       if (!response.ok) {
+    //           throw (response.status);
+    //       }
+    //       return response.json();
+    //     }).then((responseData) => { 
+    //         setData(responseData);
+    //         console.log('data',responseData)
+    //     }).catch((error) => {
+    //        console.log('error',error);
+    //     });
         
-    },[])
+    // },[])
+
+    
     useEffect(() => {
         if (data && data.length) {
             const totalPrice = data.reduce((cur:number, item: ProductInterface) => {

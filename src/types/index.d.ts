@@ -17,3 +17,10 @@ export interface ProductInterface {
     thumbnail:string,
     images?: any,
 }
+
+interface ProductResponse {
+    limit: number;
+    products: Array<ProductInterface>;
+    skip: number;
+    total: number;
+}

@@ -94,8 +94,8 @@ export default function SlideOver() {
                                     <ul   className="-my-6 divide-y divide-gray-200">
                                             {
                                                 data.map((product:ProductInterface,index:number) => (
-                                                    <>
-                                                        <li key={index} className="flex py-6">
+                                                    <div key={index}>
+                                                        <li  className="flex py-6">
                                                             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                                 <img src={product.thumbnail} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="h-full w-full object-cover object-center"/>
                                                             </div>
@@ -120,7 +120,7 @@ export default function SlideOver() {
                                                                 </div>
                                                             </div>
                                                         </li>
-                                                    </>
+                                                    </div>
                                                 ))
                                             }
                                     </ul>

@@ -79,7 +79,7 @@ export default function Products() {
             </div>
             <div className="w-full md:w-10/12 " >
                 <div className="mt-5 mb-3 flex justify-between gap-5 items-baseline">
-                    <select className="w-[200px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"  aria-label="label for the select"  onChange={(e)=> {
+                    <select defaultValue={'default'}  className="w-[200px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-slate-500 focus:border-slate-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-slate-500 dark:focus:border-slate-500"  aria-label="label for the select"  onChange={(e)=> {
                                  setSortProduct(e.target.value);
                              }}>
                         <option value={undefined} disabled={true} selected={true}>Fiyata göre sırala</option>
