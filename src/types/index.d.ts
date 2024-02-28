@@ -24,3 +24,12 @@ interface ProductResponse {
     skip: number;
     total: number;
 }
+
+interface CartContextType {
+  data: ProductInterface[] | null;
+  setData: React.Dispatch<React.SetStateAction<ProductInterface[] | null>>;
+  removeItem: (removeId: number) => void;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+

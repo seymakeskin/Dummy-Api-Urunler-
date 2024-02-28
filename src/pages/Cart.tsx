@@ -1,6 +1,7 @@
 import React, { useState , useEffect,} from 'react';
 import { Link } from 'react-router-dom';
 import { ProductInterface } from '../types';
+import useFetch from '../hooks/useFetch';
 
 export interface Root {
     carts: Cart[]
@@ -21,30 +22,11 @@ export interface Cart {
 
 export default function CartPage() {
     // const [data , setData]= useState<any>();
+    const {data,setData} = useFetch<Array<ProductInterface>>(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart`);
     const [total, setTotal] = useState<number>(0);
-    const baseUrl = "https://6585857f022766bcb8c8cfb7.mockapi.io/cart";
-    
-    const { data} = useFetch<any>(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart`);
-
 
     // mock apide sepete ekleme fonksiyonu yapabilmek için proje oluşturdum. 
 
-    // useEffect(() => {
-    //     fetch(baseUrl).then((response) => {
-    //       if (!response.ok) {
-    //           throw (response.status);
-    //       }
-    //       return response.json();
-    //     }).then((responseData) => { 
-    //         setData(responseData);
-    //         console.log('data',responseData)
-    //     }).catch((error) => {
-    //        console.log('error',error);
-    //     });
-        
-    // },[])
-
-    
     useEffect(() => {
         if (data && data.length) {
             const totalPrice = data.reduce((cur:number, item: ProductInterface) => {
@@ -56,31 +38,23 @@ export default function CartPage() {
     },[data])
 
     function removeItem(e:React.FormEvent ,removeId:number){
-        fetch(`${baseUrl}/${removeId}`, {
+        fetch(`https://6585857f022766bcb8c8cfb7.mockapi.io/cart}/${removeId}`, {
             method: 'DELETE',
         })
-        .then((responseData) => { 
-            const updatedData = data.filter((item: ProductInterface) => item.id !== removeId);
+        .then((response) => { 
+            const updatedData = data && data.filter((item: ProductInterface) => item.id !== removeId);
+            console.log('updated' ,updatedData)
             setData(updatedData);
-            const totalPrice = updatedData.reduce((cur: number, item: ProductInterface) => {
-            const quantity = item.quantity !== undefined ? item.quantity : 1;
-            return cur + item.price * quantity;
+            const totalPrice = updatedData && updatedData.reduce((cur: number, item: ProductInterface) => {
+                const quantity = item.quantity !== undefined ? item.quantity : 1;
+                return cur + item.price * quantity;
             }, 0);
-            setTotal(totalPrice);
         }).catch((error) => {
            console.log('error',error);
         });
     }
 
-    useEffect(() => {
-        if (data && data.length) {
-            const totalPrice = data.reduce((cur:number, item: ProductInterface) => {
-              const quantity = item.quantity !== undefined ? item.quantity : 1;
-              return cur + item.price * quantity;
-            }, 0);
-            setTotal(totalPrice)
-        }
-    },[data])
+  
 
   return (
     <div className="container mx-auto p-2">
@@ -99,7 +73,7 @@ export default function CartPage() {
                                     <ul className="-my-6 divide-y divide-gray-200">
                                         {
                                             data.map((product:ProductInterface,index:number) => (
-                                                <>
+                                                <div key={index}>
                                                     <Link to={`/product/${product.id}`}>
                                                         <li className="flex py-6">
                                                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -128,7 +102,7 @@ export default function CartPage() {
                                                                 </div>
                                                         </li>
                                                     </Link>
-                                                </>
+                                                </div>
                                             ))
                                         }
                                     </ul>

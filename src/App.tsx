@@ -18,13 +18,16 @@ import SignIn from './pages/SignIn';
 function App() {
   const [open, setOpen] = useState(false);
 
-  const data = {
+  const contextValue = {
     open,
-    setOpen
-  }
+    setOpen,
+    // data,
+    // setData,
+  };
+
   return (
     <div className="App bg-slate-100 h-full min-h-screen">
-      <CartContext.Provider value={data}>
+      <CartContext.Provider value={contextValue}>
           <Header></Header>
           <Routes>
               <Route path="/" element={<Home />} />

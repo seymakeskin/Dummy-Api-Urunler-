@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = <T,>(url: string): { data: T | null; loading: boolean; error: Error | null } => {
+const useFetch = <T,>(url: string): { data: T | null; loading: boolean; error: Error | null,setData: React.Dispatch<React.SetStateAction<T | null>> } => {
 
-    const [data, setData] = useState<T | any>(null);
+    const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
     
@@ -31,7 +31,7 @@ const useFetch = <T,>(url: string): { data: T | null; loading: boolean; error: E
             setError(null);
         };
     }, [url]);
-    return { data, loading, error }; 
+    return { data, loading, error , setData}; 
 };
 
 export default useFetch;

@@ -22,7 +22,7 @@ export default function SlideOver() {
           return response.json();
         }).then((responseData) => { 
             setData(responseData);
-            console.log('data',responseData)
+            // console.log('data',responseData)
         }).catch((error) => {
            console.log('error',error);
         });
